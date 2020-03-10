@@ -1,0 +1,12 @@
+<snippet>
+    <content><![CDATA[
+ll powermod(ll x,ll y,ll k) { 
+    if (y == 0) return 1;
+    ll p =powermod(x, y / 2,k)%k;
+    if (y % 2 == 0) return ((p%k) * (p%k))%k; 
+    else return ((x%k) * ((p%k) * (p%k))%k)%k; 
+}
+
+]]></content>
+  <tabTrigger>POWERMOD</tabTrigger>
+</snippet>

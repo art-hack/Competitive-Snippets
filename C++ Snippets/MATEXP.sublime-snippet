@@ -1,0 +1,81 @@
+<snippet>
+    <content><![CDATA[
+/*
+How to Use this Snippet
+
+1. Put Initial vector(IV) in vector x in setup()
+2. Put the Matrix T in Compute function
+
+Keep in Mind it is used as T^n-k * IV
+Already using   [1,1,1]^n-k * [0,1,1]
+                [1,0,0]
+                [0,1,0]
+Call Setup inside Main
+
+N starts from 1
+*/
+
+#define MOD 1000000007
+ll k;
+vector<ll> b; // b is base case
+
+vector<vector<ll> > multiply(vector<vector<ll> > &A,vector<vector<ll> > &B ){
+    vector<vector<ll> > C(k,vector<ll>(k,0));
+    FOR(i,k)
+        FOR(j,k)
+            FOR(x,k)
+                C[i][j] = (C[i][j] + ((A[i][x]%MOD)*(B[x][j]%MOD)))%MOD;
+
+    return C;
+}
+
+vector<vector<ll> >  pow(vector<vector<ll> > &A,ll p){
+    if(p==1)
+        return A;
+    if(p%2==1) {
+        auto it = pow(A,p-1);
+        return multiply(A, it);
+      }
+    else{
+        vector<vector<ll> > X = pow(A,p/2);
+        return multiply(X,X);
+    }
+}
+
+
+ll compute(ll n){
+    //Suppose n<=k
+    if(n<=k){
+        return b[k-n];
+    }
+
+    //2. Transformation matrix
+    vector<vector<ll> > T{
+        {1,1,1},
+        {1,0,0},
+        {0,1,0}
+    };
+    // cout<<"Check"<<endl;
+    // 3. T^n-k
+    T = pow(T,n-k);
+    // cout<<"Check"<<endl;
+
+    // 4. multiply by initial vector
+    ll res = 0;
+    FOR(i,k)
+        res = (res + ((T[0][i]%MOD)*(b[i]%MOD))%MOD)%MOD;
+    return res;  
+}
+
+void setup(){
+    vector<int> x={0,1,1};
+    k = x.size();
+    for(int i=x.size()-1;i>=0;i--)
+        b.push_back(x[i]);
+}
+
+
+
+]]></content>
+  <tabTrigger>MATEXP</tabTrigger>
+</snippet>

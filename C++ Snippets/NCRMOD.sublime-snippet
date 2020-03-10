@@ -1,0 +1,26 @@
+<snippet>
+    <content><![CDATA[
+#define MAXN 200001
+ll f[MAXN];
+
+ll pow(ll x,ll y,ll k) { 
+    if (y == 0) return 1;
+    ll p =pow(x, y / 2,k)%k;
+    if (y % 2 == 0) return ((p%k) * (p%k))%k; 
+    else return ((x%k) * ((p%k) * (p%k))%k)%k; 
+}
+
+ll InverseEuler(ll n, ll MOD){return pow(n,MOD-2,MOD);}
+ll C(ll n, ll r, ll MOD){return ((f[n]%MOD)*(((InverseEuler(f[r], MOD)%MOD) * (InverseEuler(f[n-r], MOD)) % MOD))%MOD) % MOD;}
+
+void setup(ll MOD){
+    f[0] = 1;
+    for(int i = 1 ; i <MAXN ; i++)
+        f[i] = (f[i-1]*i)%MOD;
+}
+// REMOVE and Call the Below SETUP inside MAIN
+setup(1000000007);
+
+]]></content>
+  <tabTrigger>NCRMOD</tabTrigger>
+</snippet>
