@@ -1,0 +1,25 @@
+<snippet>
+    <content><![CDATA[
+// save Graph in vector<int> adj[N] with example adj[1].PB(5)
+queue<int> q;
+bool visited[N]={false};
+int distance[N]={0};
+
+visited[x] = true;
+distance[x] = 0;
+q.push(x);
+while (!q.empty()) {
+	int s = q.front(); q.pop();
+	// process node s
+	for (auto u : adj[s]) {
+		if (visited[u]) continue;
+			visited[u] = true;
+		distance[u] = distance[s]+1;
+		q.push(u);
+	}
+}
+
+
+]]></content>
+  <tabTrigger>BFS</tabTrigger>
+</snippet>

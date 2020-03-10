@@ -1,0 +1,33 @@
+<snippet>
+    <content><![CDATA[
+
+// Variable Declaration
+//Call the setup in main() function
+const int MAX = 100000;
+int link[MAX],size[MAX];
+void setup(){
+    for(int i=0;i<MAX;i++)link[i]=i;
+    for(int i=0;i<MAX;i++)size[i]=1;
+}
+
+// Function to find representative of an element
+int find(int x){
+    while(x!=link[x])x=link[x];
+    return x;
+}
+
+// Function to find if 2 elements belong to same set
+bool same(int a,int b){return find(a)==find(b);}
+
+// Function to unite two sets together
+void unite(int a, int b){
+    a=find(a);
+    b=find(b);
+    if(size[a]<size[b])swap(a,b);
+    size[a]+=size[b];
+    link[b] = a;
+}
+
+]]></content>
+  <tabTrigger>UNION</tabTrigger>
+</snippet>

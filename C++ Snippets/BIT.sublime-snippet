@@ -1,0 +1,24 @@
+<snippet>
+    <content><![CDATA[
+ll tree[1001]={0};
+ll N;
+
+//BIT is 1 indexed
+ll sum(ll k) {
+    ll s = 0;
+    while (k >= 1) {
+        s += tree[k];
+        k -= k&-k;
+    }
+    return s;
+}
+
+void add(ll k, ll x) {
+    while (k <= N) {
+        tree[k] += x;
+        k += k&-k;
+    }
+}
+]]></content>
+  <tabTrigger>BIT</tabTrigger>
+</snippet>
