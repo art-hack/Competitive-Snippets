@@ -1,0 +1,32 @@
+<snippet>
+    <content><![CDATA[
+int n;
+vi tree;
+#define operation(a,b) ((a)+(b))
+
+int find(int a, int b) {
+    a += n; b += n;
+    int s = 0;
+    while (a <= b) {
+        if (a%2 == 1) s = operation(s,tree[a++]);
+        if (b%2 == 0) s = operation(s,tree[b--]);
+        a /= 2; b /= 2;
+    }
+    return s;
+}
+
+void replace(int k, int x) {
+    k += n;
+    tree[k] = x;
+    for (k /= 2; k >= 1; k /= 2) {
+        tree[k] = operation(tree[2*k],tree[2*k+1]);
+    }
+}
+
+void build(int N){
+    n=(1<<((int)ceil(log2(N))));
+    tree=vi(2*n,0);
+}
+]]></content>
+  <tabTrigger>SEGMENTTREE</tabTrigger>
+</snippet>

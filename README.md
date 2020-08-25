@@ -17,6 +17,7 @@ It will Open a Explorer Window and go to the User Folder and Paste the Snippet y
 | BFS                   	| Starts the base code for Breadth First Search                              	|
 | DFS                   	| Starts the base code for Depth First Search                                	|
 | MATEXP                	| Code to find Matrix Exponentiation value of a recurrence relation in log n 	|
+| SEGMENTTREE               | Starts the base code for Segment Tree 									 	|
 | comp                  	| Starts my base template                                                    	|
 
 Will Add more soon.
